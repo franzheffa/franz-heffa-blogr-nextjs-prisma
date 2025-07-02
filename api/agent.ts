@@ -11,3 +11,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error("❌ Cloud Run call failed:", err);
     res.status(500).json({ error: "Agent unreachable" });
   }
+}
