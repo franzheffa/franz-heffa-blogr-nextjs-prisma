@@ -2,22 +2,15 @@ FROM python:3.11-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1 \
-    PORT=8080 \
-    APP_MODULE=app.server:app
+    PIP_NO_CACHE_DIR=1
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
+COPY requirements.txt .
 
-COPY . /app
+RUN python -m pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# >>> Le point clé: installer fastapi <<<
-RUN python -m pip install --upgrade pip && \
-    pip install --no-cache-dir fastapi uvicorn && \
-    pip install --no-cache-dir .
+COPY ./app ./app
 
-EXPOSE 8080
-# On enlève toute ambiguïté côté Cloud Run/ENV
-CMD ["uvicorn","app.server:app","--host","0.0.0.0","--port","8080"]
+CMD ["uvicorn", "app.server:app", "--host", "0.0.0.0", "--port", "${PORT:-8080}"]
