@@ -13,4 +13,6 @@ RUN python -m pip install --no-cache-dir --upgrade pip && \
 
 COPY ./app ./app
 
-CMD ["uvicorn", "app.server:app", "--host", "0.0.0.0", "--port", "${PORT:-8080}"]
+# La correction clé : on utilise la forme "shell" (sans crochets)
+# pour que la variable d'environnement $PORT soit correctement interprétée.
+CMD uvicorn app.server:app --host 0.0.0.0 --port ${PORT:-8080}
