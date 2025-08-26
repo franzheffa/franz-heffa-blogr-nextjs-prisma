@@ -11,7 +11,7 @@
     <img
       height="20"
       alt="Try in Firebase Studio"
-      src="https://cdn.firebasestudio.dev/btn/try_blue_20.svg">
+      src="https://cdn.firebasestudio.dev/btn/try_blue_20.svg"> .
   </picture>
 </a> [![Launch in Cloud Shell](https://img.shields.io/badge/Launch-in_Cloud_Shell-white)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Feliasecchig%2Fasp-open-in-cloud-shell&cloudshell_print=open-in-cs) ![Stars](https://img.shields.io/github/stars/GoogleCloudPlatform/agent-starter-pack?color=yellow)
 
@@ -25,7 +25,7 @@ It accelerates development by providing a holistic, production-ready solution, a
 
 ---
  
-## ⚡ Get Started in 1 Minute
+## ⚡ Get Started in 1 Minute.
 
 Ready to build your AI agent? Simply run this command:
 
@@ -133,8 +133,8 @@ Thank you for your contributions!
 
 ## Disclaimer.
 
-This repository is for demonstrative purposes only and is not an officially supported Google product .
+This repository is for demonstrative purposes only and is not an officially supported Google product.
 
 ## Terms of Service
 
-The agent-starter-pack templating CLI and the templates in this starter pack leverage Google Cloud APIs. When you use this starter pack, you'll be deploying resources in your own Google Cloud project and will be responsible for those resources. Please review the [Google Cloud Service Terms](https://cloud.google.com/terms/service-terms) for details on the terms of service associated with these APIs . 
+The agent-starter-pack templating CLI and the templates in this starter pack leverage Google Cloud APIs. When you use this starter pack, you'll be deploying resources in your own Google Cloud project and will be responsible for those resources. Please review the [Google Cloud Service Terms](https://cloud.google.com/terms/service-terms) for details on the terms of service associated with these APIs .. 

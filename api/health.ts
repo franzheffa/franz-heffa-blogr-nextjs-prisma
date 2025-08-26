@@ -1,11 +1,14 @@
-import { runtime, dynamic, preferredRegion, gw, passThrough } from './_utils';
+import { runtime, dynamic, preferredRegion } from "./_utils.js";
 export { runtime, dynamic, preferredRegion };
 
-export default async function handler(_req: Request): Promise<Response> {
-  try {
-    const up = await fetch(`${gw()}/health`, { cache: 'no-store' });
-    return passThrough(up);
-  } catch (e:any) {
-    return new Response(`Gateway injoignable: ${e?.message||e}`, { status: 502 });
-  }
+export default async function handler(req: Request): Promise<Response> {
+  const responseData = {
+    ok: true,
+    region: req.headers.get('x-vercel-id') ?? undefined
+  };
+
+  return new Response(JSON.stringify(responseData), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' } // La correction est ici
+  });
 }

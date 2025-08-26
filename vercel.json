@@ -1,1 +1,26 @@
-{ "version": 2 }
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "vercel_deploy/server.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "vercel_deploy/server.py"
+    }
+  ],
+  "functions": {
+    "vercel_deploy/server.py": {
+      "excludeFiles": "{.backup/**,.cloudbuild/**,.github/**,adk/**,agents/**,api/**,app/**,bin/**,docs/**,lib/**,public/**,rag/**,src/**,tests/**,node_modules/**}"
+    }
+  },
+  "crons": [
+    {
+      "path": "/health",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}
