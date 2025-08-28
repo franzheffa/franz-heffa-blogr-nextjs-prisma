@@ -6,6 +6,7 @@
     "node": ">=20"
   },
   "dependencies": {
+    "@google-cloud/text-to-speech": "^6.2.0",
     "@vercel/node": "^2.3.0"
   },
   "devDependencies": {

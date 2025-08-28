@@ -1,54 +1,38 @@
-# Copyright 2025 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#       http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# Étape 1: Build
+# Utilise une image Python officielle comme image de base
+FROM python:3.10-slim as builder
 
-FROM nvcr.io/nvidia/base/ubuntu:jammy-20250415.1
+# Définit le répertoire de travail
+WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    curl \
-    gnupg2 \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
+# Empêche Python d'écrire des fichiers.pyc
+ENV PYTHONDONTWRITEBYTECODE 1
+# Assure que la sortie de Python n'est pas mise en mémoire tampon
+ENV PYTHONUNBUFFERED 1
 
-# Copy license information
-RUN mkdir -p /legal
-COPY LICENSE-3rd-party.txt /legal/
+# Installe les dépendances système si nécessaire
+# RUN apt-get update && apt-get install -y...
+
+# Installe les dépendances Python
+COPY requirements.txt.
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
+
+# Étape 2: Final
+FROM python:3.10-slim
 
 WORKDIR /app
 
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt-get install -y nodejs
+# Copie les dépendances pré-compilées de l'étape de build
+COPY --from=builder /app/wheels /wheels
+COPY --from=builder /app/requirements.txt.
+RUN pip install --no-cache /wheels/*
 
-RUN node -v && npm -v
+# Copie le code de l'application
+COPY..
 
-ARG NEXT_PUBLIC_MODEL_NAME
-ARG NEXT_PUBLIC_EMBEDDING_MODEL
-ARG NEXT_PUBLIC_RERANKER_MODEL
-ARG NEXT_PUBLIC_CHAT_BASE_URL
-ARG NEXT_PUBLIC_VDB_BASE_URL
+# Expose le port sur lequel l'application s'exécute
+EXPOSE 8080
 
-ENV NEXT_PUBLIC_MODEL_NAME=${NEXT_PUBLIC_MODEL_NAME}
-ENV NEXT_PUBLIC_EMBEDDING_MODEL=${NEXT_PUBLIC_EMBEDDING_MODEL}
-ENV NEXT_PUBLIC_RERANKER_MODEL=${NEXT_PUBLIC_RERANKER_MODEL}
-ENV NEXT_PUBLIC_CHAT_BASE_URL=${NEXT_PUBLIC_CHAT_BASE_URL}
-ENV NEXT_PUBLIC_VDB_BASE_URL=${NEXT_PUBLIC_VDB_BASE_URL}
-
-COPY . /app
-
-RUN npm install
-
-RUN npm run build
-
-EXPOSE 3000
-
-CMD ["npm", "run", "start"]
+# Commande pour exécuter l'application avec Uvicorn
+# Le port est défini à 8080, comme attendu par Cloud Run
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
