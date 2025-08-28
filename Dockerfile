@@ -1,23 +1,38 @@
-FROM python:3.11-slim
+# Étape 1: Build
+# Utilise une image Python officielle comme image de base
+FROM python:3.10-slim as builder
 
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1 \
-    PORT=8080 \
-    APP_MODULE=app.server:app
+# Définit le répertoire de travail
+WORKDIR /app
+
+# Empêche Python d'écrire des fichiers.pyc
+ENV PYTHONDONTWRITEBYTECODE 1
+# Assure que la sortie de Python n'est pas mise en mémoire tampon
+ENV PYTHONUNBUFFERED 1
+
+# Installe les dépendances système si nécessaire
+# RUN apt-get update && apt-get install -y...
+
+# Installe les dépendances Python
+COPY requirements.txt.
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
+
+# Étape 2: Final
+FROM python:3.10-slim
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
+# Copie les dépendances pré-compilées de l'étape de build
+COPY --from=builder /app/wheels /wheels
+COPY --from=builder /app/requirements.txt.
+RUN pip install --no-cache /wheels/*
 
-COPY . /app
+# Copie le code de l'application
+COPY..
 
-# >>> Le point clé: installer fastapi <<<
-RUN python -m pip install --upgrade pip && \
-    pip install --no-cache-dir fastapi uvicorn && \
-    pip install --no-cache-dir .
-
+# Expose le port sur lequel l'application s'exécute
 EXPOSE 8080
-# On enlève toute ambiguïté côté Cloud Run/ENV
-CMD ["uvicorn","app.server:app","--host","0.0.0.0","--port","8080"]
+
+# Commande pour exécuter l'application avec Uvicorn
+# Le port est défini à 8080, comme attendu par Cloud Run
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
