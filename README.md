@@ -27,7 +27,7 @@ It accelerates development by providing a holistic, production-ready solution, a
  
 ## ⚡ Get Started in 1 Minute.
 
-Ready to build your AI agent? Simply run this command:
+Ready to build your AI agent? Simply run this command :
 
 ```bash
 # Create and activate a Python virtual environment
