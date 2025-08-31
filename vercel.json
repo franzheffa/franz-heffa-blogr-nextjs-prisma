@@ -1,17 +1,16 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
-  "functions": {
-    "api/**/*.py": {
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  },
+  "version": 3,
   "rewrites": [
-    { "source": "/", "destination": "/api/index.py" },
-    { "source": "/health", "destination": "/api/index.py" }
+    { "source": "/api/(.*)", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/$1" },
+    { "source": "/health",  "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/health" },
+    { "source": "/",        "destination": "/index.html" }
   ],
-  "crons": [
-    { "path": "/health", "schedule": "0 0 * * *" }
-  ]
+  "headers": [
+    { "source": "/(.*)", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }
+  ],
+  "env": {
+    "API_BASE": "https://agent-smith-heffa-112329442315.us-central1.run.app",
+    "NEXT_PUBLIC_API_BASE_URL": "https://agent-smith-heffa-112329442315.us-central1.run.app"
+  },
+  "crons": [{ "path": "/health", "schedule": "0 0 * * *" }]
 }
