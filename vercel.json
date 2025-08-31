@@ -10,6 +10,5 @@
   ],
   "headers": [
     { "source": "/(.*)", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }
-  ],
-  "functions": { "api/*.cjs": { "runtime": "nodejs20" } }
+  ]
 }
