@@ -1,26 +1,17 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "vercel_deploy/server.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "vercel_deploy/server.py"
-    }
-  ],
+  "version": 3,
   "functions": {
-    "vercel_deploy/server.py": {
-      "excludeFiles": "{.backup/**,.cloudbuild/**,.github/**,adk/**,agents/**,api/**,app/**,bin/**,docs/**,lib/**,public/**,rag/**,src/**,tests/**,node_modules/**}"
+    "api/**/*.py": {
+      "runtime": "python3.11",
+      "memory": 1024,
+      "maxDuration": 30
     }
   },
+  "routes": [
+    { "src": "^/health$", "dest": "/api/index.py" },
+    { "src": "/(.*)", "dest": "/api/index.py" }
+  ],
   "crons": [
-    {
-      "path": "/health",
-      "schedule": "0 0 * * *"
-    }
+    { "path": "/health", "schedule": "0 0 * * *" }
   ]
 }
