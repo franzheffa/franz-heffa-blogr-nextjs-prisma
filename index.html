@@ -1,50 +1,28 @@
-<!doctype html><html lang="fr"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Buttertech • Agent Smith-Heffa</title>
-<link rel="stylesheet" href="/assets/brand.css"/>
-<meta name="description" content="Buttertech déploie des agents IA clonables sur Google Cloud (Cloud Run + Vertex AI Gemini 2.5 Flash), natifs Workspace.">
-</head><body class="bt-dark"><div class="bt-wrap">
-<h1>Buttertech — Agent Smith-Heffa</h1>
-<p class="small">
-<span class="badge">Cloud Run</span><span class="badge">Vertex AI — Gemini&nbsp;2.5 Flash</span><span class="badge">Vercel Edge</span>
-</p>
-
+<!doctype html><html lang="fr"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Buttertech • Agentsmith-heffa</title>
+<link rel="stylesheet" href="/assets/brand.css">
+<body><div class="wrap">
+<nav>
+  <a href="/">Accueil</a>
+  <a href="/produits/index.html">Produits</a>
+  <a href="/equipe/index.html">Équipe</a>
+  <a href="/docs.html">Docs</a>
+  <a href="/contact/index.html">Contact</a>
+  <a href="/health">/health</a>
+</nav>
+<h1>Buttertech – agents clonables sur Google Cloud</h1>
 <div class="card">
-<h2>Ce que nous faisons</h2>
-<p>Buttertech est une plateforme d’<strong>agents IA clonables</strong> sur Google Cloud. Nos agents automatisent des flux Sales, Support et Ops avec une latence faible et des <em>data boundaries</em> stricts. Ils se branchent nativement à Gmail, Drive, Calendar et Meet.</p>
-<ul>
-  <li><strong>Runtime</strong> : Cloud Run (FastAPI/Node) + Vertex AI (Gemini&nbsp;2.5 Flash)</li>
-  <li><strong>Sécu</strong> : identités de service dédiées, WIF/OIDC, journaux/audits</li>
-  <li><strong>Mesure</strong> : SLOs, coûts par requête, évaluations qualité/sécurité</li>
-</ul>
-<p>Public cible : équipes produit/données et BU qui veulent <strong>industrialiser l’automatisation</strong> sur Google Cloud sans sacrifier la gouvernance.</p>
+  <p><b>One-liner :</b> Buttertech déploie des agents IA clonables sur Google Cloud pour automatiser ventes, support et opérations — faible latence, périmètres de données stricts, et intégration Workspace.</p>
+  <p><b>Ce que nous faisons :</b> runtime Cloud Run + Gemini 2.5 Flash, proxies Vercel Edge, intégrations Gmail/Drive/Calendar/Meet, évaluation qualité/coût/sécurité.</p>
+  <p><b>Public cible :</b> startups & équipes cloud-first qui veulent industrialiser des workflows IA rapidement et en sécurité.</p>
 </div>
-
-<div class="grid">
-  <div class="card">
-    <h2>Produits</h2>
-    <ul>
-      <li><strong>Agent Smith-Heffa (multimodal)</strong> : orchestration d’outils et flux Workspace</li>
-      <li><strong>Compétences</strong> : RAG/GDrive, summarization Gmail/Meet, tickets & CRM</li>
-      <li><strong>Roadmap</strong> : voix/TTS, add-ons Workspace, Marketplace</li>
-    </ul>
-    <p><a href="/produits/">Découvrir les produits →</a></p>
-  </div>
-  <div class="card">
-    <h2>Équipe</h2>
-    <p>Fondé par <strong>Franz Heffa</strong> (prod/IA, déploiements cloud, intégrations temps réel).</p>
-    <p><a href="/equipe/">Voir l’équipe →</a></p>
-  </div>
-</div>
-
 <div class="card">
-  <h2>Pour les reviewers Google for Startups</h2>
+  <h2>Agent en production</h2>
   <ul>
-    <li><a href="/docs/">Résumé d’éligibilité & FAQ</a></li>
-    <li>Healthcheck : <a href="/health">/health</a> (Vercel ➜ Cloud Run)</li>
-    <li>Backend direct : <a href="https://agent-smith-heffa-112329442315.us-central1.run.app/health" rel="noreferrer" target="_blank">Cloud Run /health</a></li>
+    <li>Backend Cloud Run : <a href="https://agent-smith-heffa-112329442315.us-central1.run.app" target="_blank" rel="noreferrer">root</a> · <a href="/health">/health (via Vercel ➜ Cloud Run)</a></li>
+    <li>Endpoint proxy : <code>/api/*</code> (Vercel) → Cloud Run</li>
   </ul>
 </div>
-
-<p class="small">Contact : <a href="mailto:hello@buttertech.io">hello@buttertech.io</a> • Support : <a href="mailto:support@buttertech.io">support@buttertech.io</a></p>
+<footer>© Buttertech — <a href="/contact/index.html">Nous contacter</a></footer>
 </div></body></html>

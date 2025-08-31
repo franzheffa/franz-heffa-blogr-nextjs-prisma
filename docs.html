@@ -1,1 +1,22 @@
-<!doctype html><meta http-equiv="refresh" content="0; url=/docs/">
+<!doctype html><html lang="fr"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Docs • Buttertech</title>
+<link rel="stylesheet" href="/assets/brand.css"><body><div class="wrap">
+<nav><a href="/">Accueil</a> <a href="/produits/index.html">Produits</a> <a href="/equipe/index.html">Équipe</a> <a href="/contact/index.html">Contact</a></nav>
+<h1>Documentation</h1>
+<div class="card">
+  <h2>Architecture</h2>
+  <ul>
+    <li>Frontend statique + fonctions /api (Vercel)</li>
+    <li>Backend FastAPI/Node (Cloud Run) · Vertex AI Gemini 2.5 Flash</li>
+    <li>Proxy : <code>/api/*</code> (Vercel) → Cloud Run</li>
+    <li>Observabilité : Logs Cloud + healthcheck public</li>
+  </ul>
+</div>
+<div class="card">
+  <h2>Sécurité & Données</h2>
+  <ul>
+    <li>Comptes de service séparés, secrets GCP, quotas/alertes</li>
+    <li>Scopes Workspace minimaux selon le cas d’usage</li>
+  </ul>
+</div>
+</div></body></html>
