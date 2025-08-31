@@ -1,8 +1,6 @@
 module.exports = async function (req, res) {
   try {
-    const base =
-      process.env.NEXT_PUBLIC_API_BASE_URL ||
-      process.env.NEXT_PUBLIC_VIIZE_AGENT_GEMINI_URL;
+    const base = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.NEXT_PUBLIC_VIIZE_AGENT_GEMINI_URL;
     if (!base) return res.status(500).json({ error: 'API base URL missing' });
 
     if (req.method === 'GET') return res.status(200).json({ ok: true, base });
@@ -12,9 +10,7 @@ module.exports = async function (req, res) {
       return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    const body = typeof req.body === 'string'
-      ? JSON.parse(req.body || '{}')
-      : (req.body || {});
+    const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
     const r = await fetch(base + '/agents/echo', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
