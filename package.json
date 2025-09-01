@@ -1,15 +1,5 @@
 {
-  "name": "agent-starter-pack-viize",
-  "version": "1.0.0",
   "type": "module",
-  "engines": {
-    "node": ">=20"
-  },
-  "dependencies": {
-    "@google-cloud/text-to-speech": "^6.2.0",
-    "@vercel/node": "^2.3.0"
-  },
-  "devDependencies": {
-    "nitropack": "^2.12.4"
-  }
+  "engines": { "node": ">=20" },
+  "dependencies": { "@vercel/node": "^2.3.0" }
 }
