@@ -1,5 +1,5 @@
 {
+  "name": "agentsmith-heffa",
   "type": "module",
-  "engines": { "node": ">=20" },
-  "dependencies": { "@vercel/node": "^2.3.0" }
+  "engines": { "node": ">=20" }
 }

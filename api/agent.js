@@ -1,4 +1,8 @@
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "POST");
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
   try {
     const base = process.env.BACKEND || "https://agent-smith-heffa-112329442315.us-central1.run.app";
     const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});

@@ -7,7 +7,6 @@ __pycache__/
 venv/
 
 # Ignorer les dossiers Node.js et de build
-api/
 app/
 node_modules/
 .next/
