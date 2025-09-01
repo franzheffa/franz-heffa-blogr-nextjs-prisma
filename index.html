@@ -1,38 +1,25 @@
-<!doctype html><html lang="fr"><meta charset="utf-8">
+<!doctype html>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Buttertech – Accueil</title>
-<style>body{font:16px/1.5 system-ui,Segoe UI,Arial,sans-serif;background:#0b0b0d;color:#e8e8ea;margin:0} 
-nav{max-width:900px;margin:20px auto;display:flex;gap:.75rem;flex-wrap:wrap}
-a{color:#9bd; text-decoration:none; background:#15161a; padding:.5rem .75rem; border-radius:.6rem}
-a:hover{background:#1e2026}
-main{max-width:900px;margin:24px auto;padding:0 16px}
-pre{background:#15161a;padding:12px;border-radius:.6rem;overflow:auto}
-.badge{display:inline-block;padding:.25rem .5rem;border-radius:.5rem;background:#163; color:#bff}
-</style>
-<nav>
-  <a href="/docs.html">Docs</a>
-  <a href="/dev.html">Dev</a>
-  <a href="/produits/">Produits</a>
-  <a href="/equipe/">Équipe</a>
-  <a href="/api/agent" target="_blank">API Agent (GET)</a>
+<title>Buttertech</title>
+<link rel="stylesheet" href="/style.css">
+<body>
+<nav style="max-width:900px;margin:20px auto;display:flex;gap:.75rem;flex-wrap:wrap;padding:0 16px">
+  <a href="#home">Accueil</a>
+  <a href="#docs">Docs</a>
+  <a href="#dev">Dev</a>
+  <a href="#produits">Produits</a>
+  <a href="#equipe">Équipe</a>
+  <a href="#chat">Agent (Echo)</a>
 </nav>
-<main>
-  <h1>Buttertech – Agent (Echo)</h1>
-  <p>Statut backend : <span id="health" class="badge">…</span></p>
-  <pre id="out">{ "hint": "Teste /api/agent en POST depuis cette page" }</pre>
-  <button id="btn" style="padding:.6rem 1rem;border:0;border-radius:.6rem;background:#3b82f6;color:#fff;cursor:pointer">
-    Envoyer “Bonjour depuis le site”
-  </button>
-</main>
+<main id="app" style="max-width:900px;margin:24px auto;padding:0 16px"></main>
 <script>
-async function ping(){
-  try{const r=await fetch('/health'); const t=await r.text(); health.textContent=t.replace(/"/g,'');}
-  catch{health.textContent='indispo'}
-}
-btn.onclick=async ()=>{
-  const r=await fetch('/api/agent',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'Bonjour depuis le site'})});
-  const text=await r.text(); try{out.textContent=JSON.stringify(JSON.parse(text),null,2);}catch{out.textContent=text;}
-};
-ping();
+const PAGES={home:null,docs:'/docs.html',dev:'/dev.html',produits:'/produits/index.html',equipe:'/equipe/index.html',chat:'/chat.html'};
+const app=document.getElementById('app');
+function home(){app.innerHTML=`<h1>Buttertech</h1><p>Bienvenue 👋</p><p>API: <code>/api/agent</code> · Santé: <code>/health</code></p>`;}
+async function load(p){app.textContent='Chargement…';const r=await fetch(p,{cache:'no-store'});app.innerHTML=(await r.text());}
+function route(){const k=(location.hash||'#home').slice(1); if(!(k in PAGES)) return (app.innerHTML='<h1>404</h1>'),0; PAGES[k]?load(PAGES[k]):home();}
+addEventListener('hashchange',route); addEventListener('DOMContentLoaded',route);
 </script>
+</body>
 </html>
