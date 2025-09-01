@@ -11,6 +11,7 @@ export default async function handler(req, res) {
 
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+    // ⚠️ On testera plus bas quelle route d'echo existe vraiment
     const r = await fetch(`${base}/api/agents/echo`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

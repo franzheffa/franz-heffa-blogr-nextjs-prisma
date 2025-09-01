@@ -1,7 +1,7 @@
 {
   "version": 2,
   "env": { "BACKEND": "https://agent-smith-heffa-112329442315.us-central1.run.app" },
-  "functions": { "api/**/*.js": { "runtime": "@vercel/node@2" } },
+  "functions": { "api/**/*.js": { "runtime": "nodejs20.x" } },
   "rewrites": [
     { "source": "/api/:path((?!agent$).*)", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/api/:path" },
     { "source": "/health", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/health" }
