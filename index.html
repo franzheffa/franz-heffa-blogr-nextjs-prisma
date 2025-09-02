@@ -1,25 +1,142 @@
 <!doctype html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Buttertech</title>
-<link rel="stylesheet" href="/style.css">
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buttertech • Vérification Google</title>
+  <meta name="description" content="Page de vérification publique pour Google : informations d'équipe, domaines, détails de déploiement et endpoints." />
+  <link rel="preload" href="/assets/brand.css" as="style" />
+  <link rel="stylesheet" href="/assets/brand.css" />
+  <style>
+    :root { --bt-bg:#0b0f1a; --bt-card:#111827; --bt-text:#e5e7eb; --bt-sub:#a1a1aa; --bt-accent:#facc15; --bt-green:#22c55e; --bt-red:#ef4444; --bt-muted:#374151; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bt-bg);color:var(--bt-text);font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu}
+    .wrap{max-width:1100px;margin:40px auto;padding:0 16px}
+    header{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+    header img{height:36px}
+    header .tag{background:var(--bt-card);border:1px solid var(--bt-muted);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--bt-sub)}
+    h1{font-size:28px;margin:0 0 6px}
+    h2{font-size:20px;margin:28px 0 10px;color:var(--bt-accent)}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{grid-column:span 12;background:var(--bt-card);border:1px solid var(--bt-muted);border-radius:16px;padding:18px}
+    @media(min-width:900px){.col-6{grid-column:span 6}.col-4{grid-column:span 4}.col-8{grid-column:span 8}}
+    .k{color:var(--bt-sub)}
+    .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--bt-muted);border-radius:999px;padding:6px 10px;font-size:13px;margin:4px 6px 0 0}
+    .ok{color:var(--bt-green)} .err{color:var(--bt-red)}
+    code,pre{background:#0a0f1a;border:1px solid #1f2937;border-radius:10px;padding:2px 6px}
+    a{color:#93c5fd} a:hover{text-decoration:underline}
+    .list{padding-left:18px;margin:8px 0}
+    .muted{color:var(--bt-sub)}
+    .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+    details{background:#0c1426;border:1px solid #1e293b;border-radius:12px;padding:12px}
+    summary{cursor:pointer;font-weight:600}
+    .footer{margin:28px 0 8px;color:var(--bt-sub);font-size:13px}
+  </style>
+  <!-- Données structurées basiques pour Google -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Buttertech.io",
+    "url":"https://www.buttertech.io",
+    "logo":"https://www.buttertech.io/assets/buttertech-logo.svg",
+    "sameAs": [
+      "https://agentsmith-heffa.vercel.app",
+      "https://agentsmith-heffa-git-main-buttertech-team.vercel.app"
+    ]
+  }
+  </script>
+</head>
 <body>
-<nav style="max-width:900px;margin:20px auto;display:flex;gap:.75rem;flex-wrap:wrap;padding:0 16px">
-  <a href="#home">Accueil</a>
-  <a href="#docs">Docs</a>
-  <a href="#dev">Dev</a>
-  <a href="#produits">Produits</a>
-  <a href="#equipe">Équipe</a>
-  <a href="#chat">Agent (Echo)</a>
-</nav>
-<main id="app" style="max-width:900px;margin:24px auto;padding:0 16px"></main>
-<script>
-const PAGES={home:null,docs:'/docs.html',dev:'/dev.html',produits:'/produits/index.html',equipe:'/equipe/index.html',chat:'/chat.html'};
-const app=document.getElementById('app');
-function home(){app.innerHTML=`<h1>Buttertech</h1><p>Bienvenue 👋</p><p>API: <code>/api/agent</code> · Santé: <code>/health</code></p>`;}
-async function load(p){app.textContent='Chargement…';const r=await fetch(p,{cache:'no-store'});app.innerHTML=(await r.text());}
-function route(){const k=(location.hash||'#home').slice(1); if(!(k in PAGES)) return (app.innerHTML='<h1>404</h1>'),0; PAGES[k]?load(PAGES[k]):home();}
-addEventListener('hashchange',route); addEventListener('DOMContentLoaded',route);
-</script>
+  <div class="wrap">
+    <header>
+      <img src="/assets/buttertech-logo.svg" alt="Buttertech logo" />
+      <span class="tag">Buttertech Team</span>
+      <span class="tag">Pro</span>
+      <span class="tag">Production</span>
+    </header>
+
+    <h1>Vérification Google — Buttertech</h1>
+    <p class="muted">Cette page expose publiquement l’équipe, les domaines, les détails de déploiement et les endpoints nécessaires à la validation.</p>
+
+    <div class="grid">
+      <!-- Identité -->
+      <section class="card col-6">
+        <h2>Identité & Équipe</h2>
+        <p><span class="k">Organisation</span> : <strong>Buttertech Team</strong></p>
+        <p><span class="k">Projet</span> : <strong>agentsmith-heffa</strong></p>
+        <p><span class="k">Propriétaire GitHub</span> : <code class="mono">github/franzheffa</code></p>
+        <p><span class="k">Repo</span> : <code class="mono">franzheffa / main @ 6e1fd74</code></p>
+        <p><span class="k">Clé interne</span> : <code class="mono">EWdYjRiTm</code> (référence build)</p>
+      </section>
+
+      <!-- Domaines -->
+      <section class="card col-6">
+        <h2>Domaines</h2>
+        <ul class="list">
+          <li><a href="https://www.buttertech.io" rel="noopener">www.buttertech.io</a> (principal)</li>
+          <li><a href="https://buttertech.io" rel="noopener">buttertech.io</a></li>
+          <li><a href="https://agentsmith-heffa.vercel.app" rel="noopener">agentsmith-heffa.vercel.app</a></li>
+          <li><a href="https://agentsmith-heffa-git-main-buttertech-team.vercel.app" rel="noopener">agentsmith-heffa-git-main-buttertech-team.vercel.app</a></li>
+        </ul>
+        <p class="muted">DNS et certificats gérés par Vercel (Custom Domains assignés).</p>
+      </section>
+
+      <!-- Déploiement -->
+      <section class="card col-8">
+        <h2>Détails de déploiement</h2>
+        <p><span class="pill">Statut: <span class="ok">Ready</span></span>
+           <span class="pill">Env: Production</span>
+           <span class="pill">Dernier build: <span class="mono">22h ago</span></span>
+           <span class="pill">Time to Ready: 11s</span></p>
+        <p><span class="k">Source</span> : branche <code class="mono">main</code> • commit <code class="mono">6e1fd74</code></p>
+        <p><span class="k">Config</span> : Fluid Compute • Deployment/Skew Protection • Cold Start Prevention • Provisioning Integrations</p>
+        <details>
+          <summary>Assets statiques (extrait)</summary>
+          <ul class="list">
+            <li><code>/index.html</code> • portail SPA</li>
+            <li><code>/chat.html</code> • chat demo</li>
+            <li><code>/console.html</code> • console</li>
+            <li><code>/docs.html</code> • docs</li>
+            <li><code>/equipe/index.html</code> • équipe</li>
+            <li><code>/produits/index.html</code> • produits</li>
+            <li><code>/robots.txt</code> • <code>/sitemap.xml</code> • <code>/root-id.txt</code></li>
+            <li><code>/assets/brand.css</code> • <code>/assets/buttertech-logo.svg</code></li>
+          </ul>
+        </details>
+      </section>
+
+      <!-- API / Functions -->
+      <section class="card col-4">
+        <h2>Fonctions / API</h2>
+        <ul class="list">
+          <li><code>/api/agent</code> — Node.js 22.x</li>
+          <li><code>/api/health</code> — Node.js 22.x</li>
+          <li><code>/api/voice</code> — Node.js 22.x</li>
+          <li><code>/api/voice/tts</code> — Node.js 22.x</li>
+        </ul>
+        <p class="muted">Régions multiples activées (3 régions).</p>
+      </section>
+
+      <!-- Contact -->
+      <section class="card col-6">
+        <h2>Contact</h2>
+        <p>Support & Validation : <a href="/contact/">/contact/</a> • <a href="mailto:team@buttertech.io">team@buttertech.io</a></p>
+        <p>Mentions utiles : <a href="/docs.html">/docs.html</a> • <a href="/demo/">/demo/</a></p>
+      </section>
+
+      <!-- Notes build -->
+      <section class="card col-6">
+        <h2>Notes de build</h2>
+        <p class="muted">Avertissements détectés par Vercel : engines Node >=20 (auto-upgrade). TypeScript intégré 4.9.5.</p>
+        <details>
+          <summary>Erreurs TypeScript (résolues côté CI conseillé)</summary>
+          <p class="muted">api/_utils.ts: <code>Cannot find name 'process'</code>. Ajouter <code>@types/node</code> et <code>types:['node']</code> dans <code>tsconfig</code>.</p>
+        </details>
+      </section>
+    </div>
+
+    <p class="footer">© Buttertech.io — Page publiée pour la validation Google.</p>
+  </div>
 </body>
 </html>
