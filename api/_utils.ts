@@ -24,3 +24,5 @@ export function passThrough(up: Response): Promise<Response> {
   headers.set('x-proxy', 'vercel-edge');
   return Promise.resolve(new Response(up.body, { status: up.status, headers }));
 }
+
+export const gw = base;
