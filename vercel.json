@@ -3,6 +3,7 @@
   "build": { "env": { "NEXT_PUBLIC_API_BASE_URL": "https://agent-smith-heffa-112329442315.us-central1.run.app" } },
   "rewrites": [
     { "source": "/api/:path((?!agent$).*)", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/api/:path" },
-    { "source": "/health", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/health" }
+    { "source": "/health", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/health" },
+    { "source": "/app/(.*)", "destination": "/app/index.html" }
   ]
 }
