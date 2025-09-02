@@ -1,44 +1,26 @@
 export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
-// On choisit une région proche de votre passerelle pour minimiser la latence.
-export const preferredRegion = ['fra1']; // France (Paris)
+export const preferredRegion = ['iad1','cdg1','fra1'];
 
-/**
- * Retourne l'URL de base de la passerelle (Gateway) de manière sécurisée.
- */
-export function gw(): string {
-  const url = process.env.GATEWAY_URL || process.env.NEXT_PUBLIC_GATEWAY_URL;
-  if (!url) {
-    // Si l'URL n'est pas définie, on lance une erreur claire au lieu de continuer avec une valeur par défaut.
-    throw new Error("La variable d'environnement GATEWAY_URL n'est pas définie.");
-  }
-  return url.replace(/\/$/, ""); // Enlève le slash final pour éviter les doubles slashes.
+export function base(): string {
+  // BACKEND = Cloud Run direct (us-central1)
+  return (
+    process.env.BACKEND ||
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    ""
+  );
 }
 
-/**
- * Transfère la réponse de la passerelle au client de manière transparente.
- * C'est une méthode plus robuste et complète que la précédente.
- */
-export function passThrough(response: Response): Response {
-  // On crée de nouveaux headers pour pouvoir les modifier sans affecter l'original.
-  const headers = new Headers(response.headers);
-  // Cette ligne est cruciale pour que le code côté client (navigateur) puisse lire les headers de la réponse.
-  headers.set('Access-Control-Expose-Headers', '*');
-
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers,
-  });
+export async function methodGuard(req: Request, allowed: string[]) {
+  if (!allowed.includes(req.method)) {
+    return new Response(JSON.stringify({ error: 'Method Not Allowed'}), {
+      status: 405, headers: { 'Content-Type': 'application/json' }
+    });
+  }
 }
 
-/**
- * Bloque les requêtes qui n'utilisent pas une des méthodes HTTP autorisées (GET, POST, etc.).
- */
-export async function methodGuard(req: Request, allow: string[]): Promise<Response | null> {
-  if (!allow.includes(req.method)) {
-    return new Response(`Méthode ${req.method} non autorisée`, { status: 405 });
-  }
-  // Si la méthode est autorisée, on ne retourne rien pour que le code continue.
-  return null;
+export function passThrough(up: Response): Promise<Response> {
+  const headers = new Headers(up.headers);
+  headers.set('x-proxy', 'vercel-edge');
+  return Promise.resolve(new Response(up.body, { status: up.status, headers }));
 }
