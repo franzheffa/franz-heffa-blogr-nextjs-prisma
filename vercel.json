@@ -4,12 +4,7 @@
   "rewrites": [
     { "source": "/api/:path((?!agent$).*)", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/api/:path" },
     { "source": "/health", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/health" },
-
-    { "source": "/", "destination": "/app/index.html" },
-    { "source": "/index.html", "destination": "/app/index.html" },
-    { "source": "/app", "destination": "/app/index.html" },
-    { "source": "/app/", "destination": "/app/index.html" },
-    { "source": "/app/(.*)", "destination": "/app/index.html" }
+    { "source": "/(?!api/.*)(.*)", "destination": "/index.html" }
   ],
   "headers": [
     { "source": "/(.*)", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }
