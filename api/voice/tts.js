@@ -1,6 +1,6 @@
-import { base as gw } from '../_utils.js';
+import { base } from '../_utils.js';
 export default async function handler(req, res) {
-  const upstream = gw();
+  const upstream = base();
   const r = await fetch(`${upstream}/api/voice/tts`, {
     method: req.method,
     headers: { 'content-type': req.headers['content-type'] || 'application/json' },

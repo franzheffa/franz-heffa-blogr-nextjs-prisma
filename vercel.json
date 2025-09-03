@@ -1,12 +1,14 @@
 {
   "env": { "BACKEND": "https://agent-smith-heffa-112329442315.us-central1.run.app" },
+  "crons": [
+    { "path": "/api/cron", "schedule": "*/10 * * * *" }
+  ],
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/api/:path*" },
-    { "source": "/health",     "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/health"     },
-    { "source": "/app/:path*", "destination": "/app/index.html"     },
-    { "source": "/",           "destination": "/app/index.html"     }
+    { "source": "/health", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/health" },
+    { "source": "/(?!api/.*).*", "destination": "/index.html" }
   ],
   "headers": [
     { "source": "/(.*)", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }
-  ]
+  ],
+  "functions": { "api/**/*.js": { "runtime": "nodejs22.x" } }
 }
