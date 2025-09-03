@@ -1,17 +1,12 @@
 {
   "env": { "BACKEND": "https://agent-smith-heffa-112329442315.us-central1.run.app" },
-  "build": { "env": { "NEXT_PUBLIC_API_BASE_URL": "https://agent-smith-heffa-112329442315.us-central1.run.app" } },
-
   "rewrites": [
-    { "source": "/health", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/health" },
-    { "source": "/app/(.*)", "destination": "/app/index.html" }
+    { "source": "/api/:path*", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/api/:path*" },
+    { "source": "/health",     "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/health"     },
+    { "source": "/app/:path*", "destination": "/app/index.html"     },
+    { "source": "/",           "destination": "/app/index.html"     }
   ],
-
   "headers": [
     { "source": "/(.*)", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }
-  ],
-
-  "crons": [
-    { "path": "/api/cron", "schedule": "*/10 * * * *" }
   ]
 }
