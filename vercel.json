@@ -2,20 +2,21 @@
   "env": { "BACKEND": "https://agent-smith-heffa-112329442315.us-central1.run.app" },
   "build": { "env": { "NEXT_PUBLIC_API_BASE_URL": "https://agent-smith-heffa-112329442315.us-central1.run.app" } },
 
-  "rewrites": [
-    { "source": "/health", "destination": "https://agent-smith-heffa-112329442315.us-central1.run.app/health" }
-  ],
-
   "crons": [
     { "path": "/api/cron", "schedule": "*/10 * * * *" }
   ],
 
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/index.html" }
-  ],
+    // Cache-control global (optionnel)
+    { "src": "/(.*)", "headers": { "Cache-Control": "no-store" } },
 
-  "headers": [
-    { "source": "/(.*)", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }
+    // Proxy santé vers Cloud Run
+    { "src": "/health", "dest": "https://agent-smith-heffa-112329442315.us-central1.run.app/health" },
+
+    // Laisser d'abord Vercel servir les fichiers existants
+    { "handle": "filesystem" },
+
+    // Fallback SPA Flutter : toutes les autres routes → index.html
+    { "src": "/.*", "dest": "/index.html" }
   ]
 }
