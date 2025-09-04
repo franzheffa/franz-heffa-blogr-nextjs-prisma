@@ -6,7 +6,7 @@ REPO_DIR="$(pwd)"
 GATEWAY="${1:-https://agent-smith-heffa-112329442315.us-central1.run.app}"
 
 echo "➡️  Repo: $REPO_DIR"
-echo "➡️  GATEWAY: $AGENTSMITH-HEFFA"
+echo "➡️  GATEWAY: $GATEWAY"
 echo
 
 # --- Backups (si fichiers existent) ---
