@@ -16,7 +16,6 @@ export function WelcomeScreen({
     // This container fills the space provided by its parent layout (e.g., the left panel in a split view)
     // and centers its content (the card) within itself.
     <div className="flex-1 flex flex-col items-center justify-center p-4 overflow-hidden relative">
-      
       {/* The "Card" Container */}
       {/* This div now holds the card's styling: background, blur, padding, border, shadow, and hover effect */}
       <div className="w-full max-w-2xl z-10

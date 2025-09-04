@@ -228,13 +228,13 @@ export function ActivityTimeline({
                 )}
               </div>
             ) : !isLoading ? ( // Only show "No activity" if not loading and no events
-              <div className="flex flex-col items-center justify-center h-full text-neutral-500 pt-10">
+              (<div className="flex flex-col items-center justify-center h-full text-neutral-500 pt-10">
                 <Info className="h-6 w-6 mb-3" />
                 <p className="text-sm">No activity to display.</p>
                 <p className="text-xs text-neutral-600 mt-1">
                   Timeline will update during processing.
                 </p>
-              </div>
+              </div>)
             ) : null}
           </CardContent>
         </ScrollArea>
