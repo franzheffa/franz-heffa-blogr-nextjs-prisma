@@ -12,8 +12,8 @@ from google.cloud import texttospeech as tts
 
 # --- Configuration ---
 PROJECT = os.getenv("GOOGLE_CLOUD_PROJECT")
-LOCATION = os.getenv("VERTEX_LOCATION", "europe-west1")
-MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+LOCATION = os.getenv("VERTEX_LOCATION", "us-central1")
+MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
 # --- Initialisation de l'application FastAPI ---
 app = FastAPI(
@@ -56,7 +56,7 @@ def health():
     """Endpoint de vérification pour confirmer le statut du service et sa configuration."""
     return {
         "status": "ok",
-        "service": "agent-gateway",
+        "service": "agent-smith-heffa",
         "model": MODEL_NAME,
         "agents": {"echo": True, "gemini": True, "tts": True}
     }
