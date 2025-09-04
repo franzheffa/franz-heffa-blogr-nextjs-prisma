@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # --------- Réglages ----------
-GATEWAY="${1:-https://agent-gateway-fqsvjamshq-ew.a.run.app}"
+GATEWAY="${1:-https://agent-smith-heffa-112329442315.us-central1.run.app"
 echo "GATEWAY = $GATEWAY"
 
 # --------- Nettoyage / backup ----------

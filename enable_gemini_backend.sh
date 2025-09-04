@@ -1,6 +1,6 @@
 set -euo pipefail
 PROJECT="buttertech-ai-platform"
-REGION="europe-west1"
+REGION="us-central1"
 SERVICE="agent-starter-pack-viize"
 cd ~/agent-starter-pack-viize
 
@@ -16,7 +16,7 @@ try:
     import vertexai
     from vertexai.generative_models import GenerativeModel, Part
     PROJECT_ID = os.environ.get("GOOGLE_CLOUD_PROJECT") or os.environ.get("PROJECT_ID")
-    LOCATION   = os.environ.get("VERTEX_LOCATION","europe-west1")
+    LOCATION   = os.environ.get("VERTEX_LOCATION","us-central1")
     MODEL_NAME = os.environ.get("GENMODEL_TEXT","gemini-2.5-flash")
     if PROJECT_ID:
         vertexai.init(project=PROJECT_ID, location=LOCATION)

@@ -3,7 +3,7 @@ set -euo pipefail
 cd ~/agent-starter-pack-viize
 
 # ⇣ 1) URL de ton gateway Cloud Run (modifiable en argument)
-GATEWAY="${1:-https://agent-gateway-fqsvjamshq-ew.a.run.app}"
+GATEWAY="${1:-https://agent-smith-heffa-112329442315.us-central1.run.app}"
 echo "GATEWAY = $GATEWAY"
 
 # ⇣ 2) vercel.json avec les vars que le front peut lire

@@ -1,7 +1,7 @@
 // ESM TS route: /api/agents/<agent> -> Gateway Cloud Run
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-const FALLBACK = "https://agent-gateway-112329442315.europe-west1.run.app";
+const FALLBACK = "https://agent-smith-heffa-112329442315.us-central1.run.app";
 const BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
   process.env.GATEWAY_URL ||

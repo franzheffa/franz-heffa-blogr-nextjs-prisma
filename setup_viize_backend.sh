@@ -3,10 +3,10 @@ set -euo pipefail
 
 # --- Réglages ---
 REPO_DIR="$(pwd)"
-GATEWAY="${1:-https://agent-gateway-fqsvjamshq-ew.a.run.app}"
+GATEWAY="${1:-https://agent-smith-heffa-112329442315.us-central1.run.app}"
 
 echo "➡️  Repo: $REPO_DIR"
-echo "➡️  GATEWAY: $GATEWAY"
+echo "➡️  GATEWAY: $AGENTSMITH-HEFFA"
 echo
 
 # --- Backups (si fichiers existent) ---

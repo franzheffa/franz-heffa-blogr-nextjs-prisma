@@ -3,8 +3,8 @@ set -euo pipefail
 
 # --------- Config de base ----------
 PROJECT="buttertech-ai-platform"
-REGION="europe-west1"
-GATEWAY_SERVICE="agent-gateway"
+REGION="us-central1"
+GATEWAY_SERVICE="agent-smith-heffa"
 ECHO_AGENT_SERVICE="agent-starter-pack-viize"   # ton agent déjà déployé (endpoint /api)
 # -----------------------------------
 

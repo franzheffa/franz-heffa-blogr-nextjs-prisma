@@ -3,8 +3,8 @@ set -euo pipefail
 
 # Racines candidates (monorepo)
 ROOTS=("." "src/frontends/live_api_react/frontend" "src/frontends/adk_gemini_fullstack/frontend")
-GATEWAY="${1:-https://agent-gateway-fqsvjamshq-ew.a.run.app}"
-echo "GATEWAY = $GATEWAY"
+GATEWAY="${1:-https://agent-smith-heffa-112329442315.us-central1.run.app"
+echo "GATEWAY = $AGENTSMITH-HEFFA"
 
 # Nettoyage d'un rebase coincé (si existant)
 git rebase --abort 2>/dev/null || true

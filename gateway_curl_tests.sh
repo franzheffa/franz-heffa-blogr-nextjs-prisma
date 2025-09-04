@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-GATEWAY_URL="https://agent-gateway-fqsvjamshq-ew.a.run.app"
-BACKEND_URL="https://agent-starter-pack-viize-fqsvjamshq-ew.a.run.app"
+GATEWAY_URL="https://agent-smith-heffa-112329442315.us-central1.run.app"
+BACKEND_URL="https://agent-smith-heffa-112329442315.us-central1.run.app"
 
 echo "== Gateway /health"
 curl -sS "${GATEWAY_URL}/health"; echo
