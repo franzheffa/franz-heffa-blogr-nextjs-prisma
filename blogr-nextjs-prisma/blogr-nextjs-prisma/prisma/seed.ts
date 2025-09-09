@@ -1,11 +1,12 @@
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log(`Start seeding ...`);
-
-  const user1 = await prisma.user.create({
+  
+  // Crée un utilisateur de test
+  const user = await prisma.user.create({
     data: {
       name: 'Alice',
       email: 'alice@prisma.io',
@@ -16,35 +17,25 @@ async function main() {
             content: 'https://slack.prisma.io',
             published: true,
           },
-        ],
-      },
-    },
-  });
-
-  const user2 = await prisma.user.create({
-    data: {
-      name: 'Bob',
-      email: 'bob@prisma.io',
-      posts: {
-        create: [
           {
             title: 'Follow Prisma on Twitter',
-            content: 'https://twitter.com/prisma',
+            content: 'https://www.twitter.com/prisma',
             published: true,
           },
         ],
       },
     },
   });
+  console.log(`Created user with id: ${user.id}`);
 
-  console.log('✅ Seed finished:', user1);
-  console.log('✅ Seed finished:', user2);
+  console.log(`Seeding finished.`);
 }
 
 main()
-  .then(() => prisma.$disconnect())
   .catch((e) => {
     console.error(e);
-    prisma.$disconnect();
     process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
   });
