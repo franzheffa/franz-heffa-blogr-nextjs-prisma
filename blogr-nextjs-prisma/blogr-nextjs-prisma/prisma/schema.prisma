@@ -1,13 +1,11 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider  = "postgresql"
   url       = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
-
 model Post {
   id        String   @id @default(cuid())
   title     String
@@ -16,7 +14,6 @@ model Post {
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  String?
 }
-
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
@@ -33,7 +30,6 @@ model Account {
   user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@unique([provider, providerAccountId])
 }
-
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique @map("session_token")
@@ -41,7 +37,6 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -52,7 +47,6 @@ model User {
   accounts      Account[]
   sessions      Session[]
 }
-
 model VerificationToken {
   identifier String
   token      String   @unique
